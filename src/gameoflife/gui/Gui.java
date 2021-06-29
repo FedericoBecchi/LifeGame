@@ -3,8 +3,7 @@ package gameoflife.gui;
 import java.awt.*;
 import javax.swing.*;
 
-import gameoflife.gui.componenti.Bottone;
-import gameoflife.gui.componenti.JPanelAnimated;
+import gameoflife.gui.componenti.*;
 
 
 public class Gui{
@@ -27,7 +26,7 @@ public class Gui{
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
-		frame.setSize(600,600);
+		frame.setSize(300,300);
 		
 		switch(id) {
 		case 0:
@@ -47,9 +46,13 @@ public class Gui{
 	}
 	
 	private void CreaMenu() {
-		//JPanelAnimated video = new JPanelAnimated("immagini/background.gif");
-		frame.add(new Bottone());
-		// frame.add(video);
+		JPanelAnimated video = new JPanelAnimated("immagini/background.gif");
+		video.add(new Bottone("immagini/play.png"));
+		frame.add(video);
+		
+		
+		frame.revalidate();
+		frame.repaint();
 	}
 	
 	private void CreaGioco() {

@@ -8,12 +8,12 @@ import javax.swing.*;
 public class JPanelAnimated extends JPanel {
 	   
 	private static final long serialVersionUID = 1L;
-	private String images;
+	private String percorso_immagine;
 	private URL url;
     private Image image;
     public JPanelAnimated(String image) {
-     	this.images = image;
-     	this.url = getClass().getClassLoader().getResource(images);
+     	this.percorso_immagine = image;
+     	this.url = getClass().getClassLoader().getResource(percorso_immagine);
      	this.image = Toolkit.getDefaultToolkit().getImage(this.url);
     }
     @Override
