@@ -27,6 +27,7 @@ public class Gui{
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
 		frame.setSize(300,300);
+		frame.setResizable(false);
 		
 		switch(id) {
 		case 0:
@@ -46,8 +47,22 @@ public class Gui{
 	}
 	
 	private void CreaMenu() {
+		JPanel pannelloNord = new TransaparentPanel();
+		JPanel pannelloCentro = new TransaparentPanel();
+
 		JPanelAnimated video = new JPanelAnimated("immagini/background.gif");
-		video.add(new Bottone("immagini/play.png"));
+
+		pannelloNord.add(new Bottone("immagini/game_icon.png"));
+		
+
+		pannelloCentro.setLayout(new GridLayout(1,1));
+		pannelloCentro.add(new Bottone("immagini/play.png"));
+		pannelloCentro.add(new Bottone("immagini/fungo.png"));
+		pannelloCentro.add(new Bottone("immagini/earth.png"));
+
+		video.add(pannelloNord);
+		video.add(pannelloCentro);
+
 		frame.add(video);
 		
 		
