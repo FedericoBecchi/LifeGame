@@ -11,7 +11,7 @@ public class Bottone extends JButton {
     private ImageIcon immagine;
 
     public Bottone(){
-        this.percorso_immagine = "immagini/play.png";
+        this.percorso_immagine = null;
         this.immagine = new ImageIcon(getClass().getClassLoader().getResource(this.percorso_immagine));
         this.setIcon(immagine);
         this.setOpaque(false);

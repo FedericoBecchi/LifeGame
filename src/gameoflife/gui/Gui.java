@@ -1,16 +1,14 @@
 package gameoflife.gui;
 
 import java.awt.*;
-import javax.swing.*;
 
+import javax.swing.*;
 import gameoflife.gui.componenti.*;
 
 
-public class Gui{
-	
-	private JFrame frame;
-	
-	
+public class Gui extends JFrame{
+	private static final long serialVersionUID = 1L;
+
 	public Gui() {
 		super();
 		CreaGui(0);
@@ -23,51 +21,58 @@ public class Gui{
 	
 	private void CreaGui(int id) {
 		
-		frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
-		frame.setSize(300,300);
-		frame.setResizable(false);
-		
 		switch(id) {
-		case 0:
-			CreaMenu();
-			break;
-		case 1:
-			CreaGioco();
-			break;
-		case 2:
-			CreaJonhAutore();
-			break;
-		default:
-			CreaMenu();
-			break;
+			case 0:
+				CreaMenu();
+				break;
+			case 1:
+				CreaGioco();
+				break;
+			case 2:
+				CreaJonhAutore();
+				break;
+			default:
+				CreaMenu();
+				break;
 		}
 		
+		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("immagini/icona/icon.png"));
+		this.setIconImage(icon.getImage());
+	    
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
+		this.setResizable(false);
+		this.setSize(300,400);
+		this.setLocation(300,300);  
 	}
 	
 	private void CreaMenu() {
+		JPanelAnimated video = new JPanelAnimated("immagini/menu/background.gif");
+
 		JPanel pannelloNord = new TransaparentPanel();
 		JPanel pannelloCentro = new TransaparentPanel();
+		JPanel pannelloSud = new TransaparentPanel();
 
-		JPanelAnimated video = new JPanelAnimated("immagini/background.gif");
-
-		pannelloNord.add(new Bottone("immagini/game_icon.png"));
+		// PANNELLO NORD
+		pannelloNord.add(new Bottone("immagini/menu/game_icon.png"));
 		
+		// PANNELLO CENTRO
+		pannelloCentro.setLayout(new GridLayout(1,3));
+		pannelloCentro.add(new Bottone("immagini/menu/play.png"));
+		pannelloCentro.add(new Bottone("immagini/menu/fungo.png"));
+		pannelloCentro.add(new Bottone("immagini/menu/earth.png"));
 
-		pannelloCentro.setLayout(new GridLayout(1,1));
-		pannelloCentro.add(new Bottone("immagini/play.png"));
-		pannelloCentro.add(new Bottone("immagini/fungo.png"));
-		pannelloCentro.add(new Bottone("immagini/earth.png"));
-
+		// PANNELLO SUD
+		pannelloSud.add(new Bottone("immagini/menu/title.png"));
+		
+		// AGGIUNTA AL PANNELLO PRINCIPALE VIDEO
 		video.add(pannelloNord);
 		video.add(pannelloCentro);
-
-		frame.add(video);
+		video.add(pannelloSud);
 		
-		
-		frame.revalidate();
-		frame.repaint();
+		this.add(video);
+		this.revalidate();
+		this.repaint();
 	}
 	
 	private void CreaGioco() {
@@ -77,22 +82,4 @@ public class Gui{
 	private void CreaJonhAutore() {
 		
 	}
-}
-
-
-class Video extends JPanel {
-    
-	private static final long serialVersionUID = 4844000608526155717L;
-	
-	private Image image;
-	
-    Video(Image image) {
-        this.image = image;
-    }
-    
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(image,0,0,getWidth(),getHeight(),this);
-    }
 }
